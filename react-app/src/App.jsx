@@ -1,35 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import ReactiaPurkissa from './components/ReactiaPurkissa';
+import Greeting from './components/Greeting';
+import { Footer } from './components/Footer';
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  const styles = {
+    backgroundColor: 'black',
+    color: 'white',
+  };
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div style={styles}>
+        <h1>Reactia purkissa 2025</h1>
+        <ReactiaPurkissa />
+        <Greeting />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      < Footer name="tekstiä jeejee" times="2" isReal={true}/>
+      < Footer name="jeejee tekstiä" times={30} isReal={true}/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
