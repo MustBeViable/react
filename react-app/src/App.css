@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+
+.pizza-menu {
+  display: flex;
+  justify-content: space-around;
+  color: azure;
+  background-color: black;
+}
+
+.pizza-card {
+  border: 2px solid red;
+  border-radius: 15px;
+}
