@@ -1,4 +1,7 @@
-const MediaRow = ({item, setSelectedItem, setIsOpen}) => {
+import Single from "../views/Single";
+import { Link } from "react-router";
+
+const MediaRow = ({item, setSelectedItem}) => {
   return (
     <tr key={item.media_id} className="pizza-card">
       <td>
@@ -10,14 +13,7 @@ const MediaRow = ({item, setSelectedItem, setIsOpen}) => {
       <td>{item.filesize}</td>
       <td>{item.media_type}</td>
       <td>
-        <button
-          onClick={() => {
-            setSelectedItem(item);
-            setIsOpen(true);
-          }}
-        >
-          Open
-        </button>
+        <Link to="/single" state={item} onClick={()=> {setSelectedItem(item)}}>Show</Link>
       </td>
     </tr>
   );

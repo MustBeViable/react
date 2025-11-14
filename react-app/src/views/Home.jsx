@@ -1,7 +1,6 @@
-import MediaRow from './MediaRow';
+import MediaRow from '../components/MediaRow';
 import '../App.css';
 import {useState} from 'react';
-import {SingleView} from './SingleView';
 
 const mediaArray = [
   {
@@ -46,12 +45,6 @@ const Home = () => {
 
   return (
     <>
-      <SingleView
-        selectedItem={selectedItem}
-        setSelectedItem={setSelectedItem}
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-      />
       <h2>My Media</h2>
       <table className="pizza-card">
         <thead>
