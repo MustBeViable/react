@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useLocation, useNavigate} from 'react-router';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 const Single = () => {
   const {state} = useLocation();

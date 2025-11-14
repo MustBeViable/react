@@ -1,5 +1,5 @@
 import Single from "../views/Single";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const MediaRow = ({item, setSelectedItem}) => {
   return (
