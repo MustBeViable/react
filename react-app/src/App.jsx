@@ -5,6 +5,8 @@ import Layout from './components/Layout';
 import Single from './views/Single';
 import Profile from './views/Profile';
 import Upload from './views/Upload';
+import Login from './views/Login';
+import Logout from './views/Logout';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
             <Route path="/single" element={<Single />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/upload" element={<Upload />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
           </Route>
         </Routes>
       </BrowserRouter>
