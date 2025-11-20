@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import {Link, Outlet} from 'react-router-dom';
 
 const Layout = () => {
   return (
@@ -14,6 +14,12 @@ const Layout = () => {
           </li>
           <li>
             <Link to="/upload">Upload</Link>
+          </li>
+          <li>
+            <Link to="/login">Log in</Link>
+          </li>
+          <li>
+            <Link to="/logout">Log out</Link>
           </li>
         </ul>
       </nav>
