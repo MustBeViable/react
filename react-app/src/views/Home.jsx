@@ -1,7 +1,7 @@
 import MediaRow from '../components/MediaRow';
 import '../App.css';
 import {useEffect, useState} from 'react';
-import {fetchData} from '../fetchdata.js';
+import {getMedia} from '../utils/getMedia';
 
 const Home = () => {
   const [mediaArray, setMediaArray] = useState([]);
@@ -9,28 +9,10 @@ const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const getMedia = async () => {
-      try {
-        const mediaUrl = import.meta.env.VITE_MEDIA_API + '/media';
-        const authUrl = import.meta.env.VITE_AUTH_API + '/users/';
-        const json = await fetchData(mediaUrl);
-        const mediaWithUsers = await Promise.all(
-          json.map(async (item) => {
-            const user = await fetchData(authUrl + item.user_id);
-            return {
-              ...item,
-              username: user.username,
-            };
-          }),
-        );
-        setMediaArray(mediaWithUsers);
-        console.log(mediaWithUsers);
-      } catch (error) {
-        console.log(error);
-      }
+    const updateMedia = async () => {
+      setMediaArray(await getMedia());
     };
-
-    getMedia();
+    updateMedia();
   }, []);
 
   return (
