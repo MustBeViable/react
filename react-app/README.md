@@ -1,6 +1,6 @@
 # React + Vite
 
-Open [custom hooks](https://users.metropolia.fi/~eliasrin/custom-hooks/) to view it in the browser.
+Open [custom hooks](https://users.metropolia.fi/~eliasrin/forms/) to view it in the browser.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
