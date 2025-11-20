@@ -20,4 +20,4 @@ const getMedia = async () => {
   }
 };
 
-export default getMedia;
+export {getMedia};

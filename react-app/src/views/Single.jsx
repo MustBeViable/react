@@ -17,10 +17,9 @@ const Single = () => {
         )}
         {(selectedItem?.media_type === 'video/quicktime' ||
           selectedItem?.media_type === 'video/mp4') && (
-          <video width="560" height="315" controls autoPlay muted>
+          <video width="560" height="315" controls muted autoPlay>
             <source
               src={selectedItem.filename}
-              type={selectedItem.media_type}
             />
           </video>
         )}
