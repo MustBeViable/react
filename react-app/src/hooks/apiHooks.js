@@ -1,5 +1,10 @@
-import {fetchData} from './fetchdata';
-const getMedia = async () => {
+import {fetchData} from '../utils/fetchdata';
+import { useState, useEffect } from 'react';
+
+const useMedia = () => {
+  const [mediaArray, setMediaArray] = useState([]);
+
+  const getMedia = async () => {
   try {
     const mediaUrl = import.meta.env.VITE_MEDIA_API + '/media';
     const authUrl = import.meta.env.VITE_AUTH_API + '/users/';
@@ -20,4 +25,16 @@ const getMedia = async () => {
   }
 };
 
-export {getMedia};
+  useEffect(() => {
+    const updateMedia = async () => {
+      setMediaArray(await getMedia());
+    };
+    updateMedia();
+  }, []);
+
+  return {mediaArray}
+};
+
+
+
+export {useMedia};
