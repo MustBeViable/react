@@ -5,3 +5,5 @@ Open [Link to hooks](https://users.metropolia.fi/~eliasrin/hooks/) to view it in
 Open [Link to custom hooks](https://users.metropolia.fi/~eliasrin/custom-hooks/) to view it in the browser.
 
 Open [Link to forms](https://users.metropolia.fi/~eliasrin/forms/) to view it in the browser.
+
+Open [Link to context](https://users.metropolia.fi/~eliasrin/context/) to view it in the browser.
