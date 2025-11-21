@@ -17,9 +17,11 @@ const Layout = () => {
           <li>
             <Link to="/">Home</Link>
           </li>
+          { user && (
           <li>
             <Link to="/profile">Profile</Link>
-          </li>
+          </li>)
+          }
           <li>
             <Link to="/upload">Upload</Link>
           </li>

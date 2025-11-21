@@ -20,7 +20,6 @@ const LoginForm = () => {
     initValues,
   );
 
-  console.log(inputs);
   return (
     <>
       <h1>Login</h1>
