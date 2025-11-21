@@ -18,7 +18,6 @@ const useMedia = () => {
           };
         }),
       );
-      console.log(mediaWithUsers);
       return mediaWithUsers;
     } catch (error) {
       console.log(error);
@@ -55,6 +54,7 @@ const useAuthentication = () => {
       return loginResult;
     } catch (error) {
       console.log(error);
+      return false;
     }
   };
 
@@ -107,7 +107,7 @@ const useUser = () => {
     updateUser();
   }, []);
 
-  return {user, postUser};
+  return {user, postUser, getUserByToken};
 };
 
 export {useMedia, useAuthentication, useUser};
