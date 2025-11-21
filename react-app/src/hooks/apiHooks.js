@@ -107,7 +107,7 @@ const useUser = () => {
     updateUser();
   }, []);
 
-  return {user, postUser};
+  return {user, postUser, getUserByToken};
 };
 
 export {useMedia, useAuthentication, useUser};
