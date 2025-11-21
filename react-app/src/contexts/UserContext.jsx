@@ -1,6 +1,7 @@
 import {createContext, useState} from 'react';
 import {useAuthentication, useUser} from '../hooks/apiHooks';
 import {useLocation, useNavigate} from 'react-router';
+import Login from '../views/Login';
 
 const UserContext = createContext(null);
 
@@ -14,8 +15,15 @@ const UserProvider = ({children}) => {
   // login, logout and autologin functions are here instead of components
   const handleLogin = async (credentials) => {
     try {
-      setUser(await postLogin(credentials));
-      navigate('/');
+      const logIn = await postLogin(credentials);
+      if (!logIn) {
+        window.alert('wrong username or password');
+        return;
+      }
+      if (logIn) {
+        setUser(logIn);
+        navigate('/');
+      }
     } catch (error) {
       console.error('Login failed', error);
     }

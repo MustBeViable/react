@@ -1,9 +1,7 @@
-import {useNavigate} from 'react-router';
 import useForm from '../hooks/formHooks';
 import {useUserContext} from '../hooks/contextHooks';
 
 const LoginForm = () => {
-  const navigate = useNavigate();
   const {handleLogin} = useUserContext();
   const initValues = {
     username: '',
@@ -13,7 +11,6 @@ const LoginForm = () => {
   const doLogin = async () => {
     try {
       handleLogin(inputs);
-      navigate('/');
     } catch (error) {
       console.error('Login failed', error);
     }
