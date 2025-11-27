@@ -1,14 +1,13 @@
 import {Link, Outlet} from 'react-router-dom';
 import {useUserContext} from '../hooks/contextHooks';
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 
 const Layout = () => {
   const {user, handleAutoLogin} = useUserContext();
 
   useEffect(() => {
-    handleAutoLogin()
-  }, [])
-
+    handleAutoLogin();
+  }, []);
 
   return (
     <div>
@@ -17,11 +16,11 @@ const Layout = () => {
           <li>
             <Link to="/">Home</Link>
           </li>
-          { user && (
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>)
-          }
+          {user && (
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+          )}
           <li>
             <Link to="/upload">Upload</Link>
           </li>
