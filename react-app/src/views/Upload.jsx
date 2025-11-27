@@ -43,56 +43,75 @@ const Upload = () => {
     initValues,
   );
 
-  return (
-    <>
-      <h1>Upload</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title</label>
-          <input
-            name="title"
-            type="text"
-            id="title"
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="description">Description</label>
-          <textarea
-            name="description"
-            rows={5}
-            id="description"
-            onChange={handleInputChange}
-          ></textarea>
-        </div>
-        <div>
-          <label htmlFor="file">File</label>
-          <input
-            name="file"
-            type="file"
-            id="file"
-            accept="image/*, video/*"
-            onChange={handleFileChange}
-          />
-        </div>
-        <img
-          src={
-            file
-              ? URL.createObjectURL(file)
-              : 'https://via.placeholder.com/200?text=Choose+image'
-          }
-          alt="preview"
-          width="200"
+return (
+  <>
+    <h1 className="mb-6 text-3xl font-semibold text-center">Upload</h1>
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col items-center justify-center gap-4"
+    >
+      <div className="flex flex-col w-4/5">
+        <label htmlFor="title" className="mb-1 font-medium">
+          Title
+        </label>
+        <input
+          name="title"
+          type="text"
+          id="title"
+          onChange={handleInputChange}
+          className="mb-2 rounded border border-neutral-400 px-3 py-2 bg-neutral-900 text-neutral-100"
         />
-        <button
-          type="submit"
-          disabled={file && inputs.title.length > 3 ? false : true}
-        >
-          Upload
-        </button>
-      </form>
-    </>
-  );
+      </div>
+
+      <div className="flex flex-col w-4/5">
+        <label htmlFor="description" className="mb-1 font-medium">
+          Description
+        </label>
+        <textarea
+          name="description"
+          rows={5}
+          id="description"
+          onChange={handleInputChange}
+          className="mb-2 rounded border border-neutral-400 px-3 py-2 bg-neutral-900 text-neutral-100"
+        ></textarea>
+      </div>
+
+      <div className="flex flex-col w-4/5">
+        <label htmlFor="file" className="mb-1 font-medium">
+          File
+        </label>
+        <input
+          name="file"
+          type="file"
+          id="file"
+          accept="image/*, video/*"
+          onChange={handleFileChange}
+          className="mb-2 rounded border border-neutral-400 px-3 py-2 bg-neutral-900 text-neutral-100"
+        />
+      </div>
+
+      <img
+        src={
+          file
+            ? URL.createObjectURL(file)
+            : 'https://via.placeholder.com/200?text=Choose+image'
+        }
+        alt="preview"
+        width="200"
+        className="my-2 h-[200px] w-[200px] rounded object-cover"
+      />
+
+      <button
+        type="submit"
+        disabled={!(file && inputs.title.length > 3)}
+        className="mt-2 rounded bg-[#363636] px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-neutral-700"
+      >
+        Upload
+      </button>
+    </form>
+  </>
+);
+
 };
 
 Upload.propTypes = {};

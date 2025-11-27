@@ -1,14 +1,54 @@
 import MediaRow from '../components/MediaRow';
-import { useState } from 'react';
-import { useMedia } from '../hooks/apiHooks';
+import {useState} from 'react';
+import {useMedia} from '../hooks/apiHooks';
+import {useNavigate} from 'react-router-dom';
 
 const Home = () => {
-
   const [selectedItem, setSelectedItem] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
+  const {mediaArray, deleteMedia, modifyMedia} = useMedia();
+  const navigate = useNavigate(); 
 
-  const { mediaArray } = useMedia();
+  const handleEditMedia = async (item) => {
+    const newTitle = window.prompt('New title', item.title);
+    if (newTitle === null) return;
+
+    const newDescription = window.prompt(
+      'New description',
+      item.description ?? '',
+    );
+    if (newDescription === null) return;
+
+    try {
+      const token = localStorage.getItem('token');
+      await modifyMedia(
+        item.media_id,
+        {
+          title: newTitle,
+          description: newDescription,
+        },
+        token,
+      );
+      navigate('/')
+    } catch (error) {
+      console.error(error);
+      alert('Failed to update media');
+    }
+  };
+
+  const handleDeleteMedia = async (item) => {
+    const ok = window.confirm(`Delete "${item.title}"?`);
+    if (!ok) return;
+
+    try {
+      const token = localStorage.getItem('token');
+      await deleteMedia(item.media_id, token);
+    } catch (error) {
+      console.error(error);
+      alert('Failed to delete media');
+    }
+  };
 
   return (
     <>
@@ -24,7 +64,7 @@ const Home = () => {
             <th className="p-4 border border-neutral-700">Created</th>
             <th className="p-4 border border-neutral-700">Size</th>
             <th className="p-4 border border-neutral-700">Type</th>
-            <th className="p-4 border border-neutral-700">View</th>
+            <th className="p-4 border border-neutral-700">Actions</th>
           </tr>
         </thead>
 
@@ -42,14 +82,6 @@ const Home = () => {
             [&>tr>td:first-child>img]:w-[260px]
             [&>tr>td:first-child>img]:h-[200px]
             [&>tr>td:first-child>img]:object-cover
-
-            [&>tr>td:last-child>a]:inline-block
-            [&>tr>td:last-child>a]:px-2
-            [&>tr>td:last-child>a]:py-1
-            [&>tr>td:last-child>a]:bg-[#363636]
-            [&>tr>td:last-child>a]:text-white
-            [&>tr>td:last-child>a]:no-underline
-            [&>tr>td:last-child>a:hover]:bg-[#111111]
           "
         >
           {mediaArray.map((item) => (
@@ -60,6 +92,8 @@ const Home = () => {
               setSelectedItem={setSelectedItem}
               isOpen={isOpen}
               setIsOpen={setIsOpen}
+              onEditClick={handleEditMedia}
+              onDeleteClick={handleDeleteMedia}
             />
           ))}
         </tbody>
@@ -67,4 +101,5 @@ const Home = () => {
     </>
   );
 };
+
 export default Home;
