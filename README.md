@@ -9,3 +9,5 @@ Open [Link to forms](https://users.metropolia.fi/~eliasrin/forms/) to view it in
 Open [Link to context](https://users.metropolia.fi/~eliasrin/context/) to view it in the browser.
 
 Open [Link to upload](https://users.metropolia.fi/~eliasrin/upload/) to view it in the browser.
+
+Open [Link to tailwind](https://users.metropolia.fi/~eliasrin/tailwind/) to view it in the browser.
