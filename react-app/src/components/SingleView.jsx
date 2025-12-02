@@ -1,4 +1,5 @@
 import React from 'react';
+import Likes from './Likes';
 
 export const SingleView = ({
   selectedItem,
@@ -6,6 +7,7 @@ export const SingleView = ({
   isOpen,
   setIsOpen,
 }) => {
+  console.log("tää toimiipi")
 
   if (!selectedItem) return null;
 
@@ -33,6 +35,7 @@ export const SingleView = ({
               allowFullScreen
             ></iframe>
           )}
+          <Likes mediaId={selectedItem.media_id} />.
           <button
             onClick={() => {
               setSelectedItem(null);
