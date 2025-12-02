@@ -54,7 +54,6 @@ const useMedia = () => {
     } catch (error) {
       console.log(error);
     }
-
   };
 
   const deleteMedia = async (mediaId, token) => {
@@ -77,7 +76,6 @@ const useMedia = () => {
       throw error;
     }
   };
-
 
   const modifyMedia = async (mediaId, inputs, token) => {
     const body = {
@@ -210,9 +208,87 @@ const useFile = () => {
     } catch (error) {
       console.log(error);
     }
-
   };
   return {postFile};
 };
 
-export {useMedia, useAuthentication, useUser, useFile};
+const useLikes = () => {
+  const mediaUrl = import.meta.env.VITE_MEDIA_API;
+
+  const getUserLikeByMediaId = async (mediaId) => {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+
+    const options = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      return await fetchData(
+        `${mediaUrl}/likes/bymedia/user/${mediaId}`,
+        options,
+      );
+    } catch (error) {
+      // 404 tms. = käyttäjä ei ole tykännyt
+      if (
+        error.message?.toLowerCase().includes('like not found') ||
+        error.message?.toLowerCase().includes('no likes found')
+      ) {
+        return null;
+      }
+      throw error;
+    }
+  };
+
+  const postLike = async (mediaId) => {
+    const token = localStorage.getItem('token');
+    if (!token) throw new Error('No auth token found');
+
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({media_id: mediaId}),
+    };
+
+    const url = mediaUrl + '/likes';
+    const result = await fetchData(url, fetchOptions);
+    return result; // { message: "Like added" }
+  };
+
+  const deleteLike = async (likeId) => {
+    const token = localStorage.getItem('token');
+    if (!token) throw new Error('No auth token found');
+
+    const fetchOptions = {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const url = mediaUrl + `/likes/${likeId}`;
+    const result = await fetchData(url, fetchOptions);
+    return result; // { message: "Like deleted" }
+  };
+
+  const getLikesByMediaId = async (mediaId) => {
+    try {
+      const url = mediaUrl + `/likes/bymedia/${mediaId}`;
+      const likes = await fetchData(url);
+      return likes;
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  };
+
+  return {postLike, deleteLike, getLikesByMediaId, getUserLikeByMediaId};
+};
+
+
+export {useMedia, useAuthentication, useUser, useFile, useLikes};
